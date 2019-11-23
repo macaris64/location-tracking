@@ -15,6 +15,9 @@ const moscaSettings = {
     backend: ascoltatore,
     persistence: {
         factory: mosca.persistence.Redis
+    },
+    http: {
+        port: 3000
     }
 };
 
@@ -24,7 +27,6 @@ server.on('ready', setup);
 server.on('clientConnected', function(client) {
     console.log('client connected', client.id);
 });
-
 // fired when a message is received
 server.on('published', function(packet, client) {
     console.log('Published', packet.topic, packet.payload);
@@ -32,5 +34,5 @@ server.on('published', function(packet, client) {
 
 // fired when the mqtt server is ready
 function setup() {
-    console.log('Mosca server is up and running')
+    console.log('Mosca server is up and running');
 }
